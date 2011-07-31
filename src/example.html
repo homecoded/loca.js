@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>loca.js - a simple client-side localization framework</title>
+    <script type="text/javascript" src="impunit.js"></script>
+    <script type="text/javascript" src="tests.js"></script>
+    <script type="text/javascript" src="loca.js"></script>
+    <script type="text/javascript" src="locadata.js"></script>
+
+    <style type="text/css">
+        body { font-family: Georgia, Times New Roman, serif; margin: 0px; padding: 0px; }
+
+        h1 { color: #767683; text-shadow: #fff 1px 1px 3px; border-bottom: 1px solid #aaa; padding-bottom: 5px;
+            margin-bottom: 45px; margin-top: 45px;}
+
+        .bg{ position: absolute; top: 0px; height: 0px; width: 100%; height: 100%; background-color: #fff;
+            margin: 0px; padding: 0px; z-index: -1; background: #ffffff;
+            background: -moz-linear-gradient(top, #999999, #ffffff);
+            background: -webkit-gradient(linear, left top, left bottom, from(#999999), to(#ffffff));
+            filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#999999', EndColorStr='#ffffff', GradientType=0);
+        }
+
+        .content { margin: 0px; width: 70%; margin-left: auto; margin-right: auto; background-color: #fff8ed;
+            padding: 1px; padding-left: 30px; padding-right: 30px; padding-bottom: 100px;
+	        -moz-box-shadow: 0px 0px 15px #444; -webkit-box-shadow: 0px 0px 15px #444; box-shadow: 0px 0px 15px #444;
+	        -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#444444')";
+	        filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#444444');
+        }
+    </style>
+
+    <script type="text/javascript">
+        var value = 0;
+
+        function add() {
+            value++;
+            loca.setVariable("#sum#", value);
+            loca.updateVariables();
+        }
+
+        function updateString() {
+            var newVar = loca.getVariable("#adjective#");
+            while (newVar == loca.getVariable("#adjective#")) {
+                newVar = loca.getLocaData("txt_adjective_" + Math.floor(Math.random() * 4), loca.getLanguage());
+            }
+            loca.setVariable("#adjective#", newVar);
+            loca.updateVariables();
+        }
+
+        function startExample() {
+            loca.setDict(loca__dictionary);
+            loca.applyLocalization(LOCA_ENG);
+            add();
+            updateString();
+            runTests();
+        }
+
+        function setLang(id) {
+            if (loca.getLanguage() == id) {
+                return;
+            }
+            loca.applyLocalization(id);
+            updateString();
+        }
+    </script>
+
+</head>
+
+
+<body onload="startExample()">
+    <div id="content" class="content">
+        <h1><span id="txt_title"></span></h1>
+        <p><span id="txt_intro"></span></p>
+        <div style="padding-left: 30px;">
+            <p >
+                <span id="txt_select_language"></span>
+            </p>
+            <ul>
+                <li><a href="javascript:setLang(LOCA_GER)"><span id="txt_german"></span></a></li>
+                <li><a href="javascript:setLang(LOCA_ENG)"><span id="txt_english"></span></a></li>
+            </ul>
+            <p>
+                <span id="txt_variable_example"></span><br>
+                <span id="txt_variable_string_example"></span>
+
+            </p>
+            <p>
+                <input type="button" id="button_num_example" value="txt_button_example" onclick="add()">
+                <input type="button" id="button_str_example" value="txt_button_example_string" onclick="updateString()">
+            </p>
+        </div>
+        <p><span id="txt_explanation"></span></p>
+
+        <h1><span id="txt_tests"></span></h1>
+        <div id="results">
+            Running tests...
+        </div>
+        <div id="asyncResults" style="color: #080">
+            Running asynchronous tests...
+        </div>
+
+    </div>
+    <div id="background" class="bg">
+    </div>
+
+</body>
+</html>
