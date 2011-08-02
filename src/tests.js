@@ -39,7 +39,6 @@ var tests = (function () {
 
         _testLoca : function () {
             locatest.setup();
-            var onlk = loca.getLocaData('txt_test1');
             impunit.assertEqual('test1_1', loca.getLocaData('txt_test1'));
             impunit.assertEqual('test1_1', loca.getLocaData('txt_test1', 0));
             impunit.assertEqual('test1_2', loca.getLocaData('txt_test1', 1));
