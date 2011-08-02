@@ -65,7 +65,11 @@ var impunit = (function () {
                             testSuite[testName]();
                             if (isTestFailed) {
                                 testsFailed += 1;
+                                messages += 'failed';
+                            } else {
+                                messages += 'ok';
                             }
+                            messages += ' : ' + testName + '\n';
                         }
                     } catch (e) {
                         testsFailed += 1;
@@ -74,6 +78,10 @@ var impunit = (function () {
                 }
             }
         };
+
+        function lastTestName() {
+            
+        }
 
         function assert(expr, testIdent, msg, asyncTestName) {
             if (expr === false) {
