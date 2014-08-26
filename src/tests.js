@@ -5,16 +5,18 @@ var tests = (function () {
         setup: function () {
             // craete a dict
             var dict = {
-                txt_test1 : ['test1_1', 'test1_2'],
-                txt_test2 : ['test2_1', 'test2_2'],
-                txt_test3 : ['test3_1', 'test3_2'],
-                txt_test4 : ['#var# test', '#var# test2', { containsVariables: true}],
-                txt_text5: ['#var# test #var#', '#var# test2 #var#', { containsVariables: true}],
-                txt_text6: ['#var# test #var2#', '#var# test2 #var2#', { containsVariables: true}],
-                txt_text7: ['#var# test #var2#', '#var# test2 #var2#']
-            };
+                    txt_test1 : ['test1_1', 'test1_2'],
+                    txt_test2 : ['test2_1', 'test2_2'],
+                    txt_test3 : ['test3_1', 'test3_2'],
+                    txt_test4 : ['#var# test', '#var# test2', { containsVariables: true}],
+                    txt_text5: ['#var# test #var#', '#var# test2 #var#', { containsVariables: true}],
+                    txt_text6: ['#var# test #var2#', '#var# test2 #var2#', { containsVariables: true}],
+                    txt_text7: ['#var# test #var2#', '#var# test2 #var2#']
+                },
+                resultDiv = document.getElementById('testresults')
+            ;
             // create the spans
-            $('#testresults').append('<div id="test_remove_me">'
+            resultDiv.innerHTML = '<div id="test_remove_me">'
                     + '<span id="txt_test1"></span>'
                     + '<p><span id="txt_test2"></span></p>'
                     + '<p><div><span id="txt_test3"></span></div></p>'
@@ -24,7 +26,7 @@ var tests = (function () {
                     + '<input type="button" id="btn_2" value="txt_test2" >'
                     + '<input type="button" id="btn_3" value="txt_text5" >'
                     + '</div>'
-                    );
+                    ;
 
             // init the loca
             loca.setDict(dict);
@@ -34,7 +36,8 @@ var tests = (function () {
             loca.setDict(null);
             loca.setButtonDict(null);
             // remove the test elements
-            $('#test_remove_me').remove();
+            var element = document.getElementById('test_remove_me');
+            element.parentNode.removeChild(element);
         },
 
         _testLoca : function () {
@@ -48,9 +51,9 @@ var tests = (function () {
         _testLocaReplace: function () {
             locatest.setup();
             loca.applyLocalization(0);
-            impunit.assertEqual('test1_1', $('#txt_test1').html());
-            impunit.assertEqual('test2_1', $('#txt_test2').html());
-            impunit.assertEqual('test3_1', $('#txt_test3').html());
+            impunit.assertEqual('test1_1', document.getElementById('txt_test1').innerHTML);
+            impunit.assertEqual('test2_1', document.getElementById('txt_test2').innerHTML);
+            impunit.assertEqual('test3_1', document.getElementById('txt_test3').innerHTML);
             locatest.tearDown();
         },
 
@@ -58,17 +61,17 @@ var tests = (function () {
             locatest.setup();
             loca.applyLocalization(0);
             loca.applyLocalization(1);
-            impunit.assertEqual('test1_2', $('#txt_test1').html());
-            impunit.assertEqual('test2_2', $('#txt_test2').html());
-            impunit.assertEqual('test3_2', $('#txt_test3').html());
+            impunit.assertEqual('test1_2', document.getElementById('txt_test1').innerHTML);
+            impunit.assertEqual('test2_2', document.getElementById('txt_test2').innerHTML);
+            impunit.assertEqual('test3_2', document.getElementById('txt_test3').innerHTML);
             locatest.tearDown();
         },
 
         _testLocaButtons: function () {
             locatest.setup();
             loca.applyLocalization(0);
-            impunit.assertEqual('test1_1', $('#btn_1').val(), "Button 1 was not localized correctly");
-            impunit.assertEqual('test2_1', $('#btn_2').val(), "Button 2 was not localized correctly");
+            impunit.assertEqual('test1_1', document.getElementById('btn_1').value, "Button 1 was not localized correctly");
+            impunit.assertEqual('test2_1', document.getElementById('btn_2').value, "Button 2 was not localized correctly");
             locatest.tearDown();
         },
 
@@ -76,8 +79,8 @@ var tests = (function () {
             locatest.setup();
             loca.applyLocalization(0);
             loca.applyLocalization(1);
-            impunit.assertEqual('test1_2', $('#btn_1').val(), "Button 1 was not localized correctly");
-            impunit.assertEqual('test2_2', $('#btn_2').val(), "Button 2 was not localized correctly");
+            impunit.assertEqual('test1_2', document.getElementById('btn_1').value, "Button 1 was not localized correctly");
+            impunit.assertEqual('test2_2', document.getElementById('btn_2').value, "Button 2 was not localized correctly");
             locatest.tearDown();
         },
 
@@ -143,10 +146,10 @@ var tests = (function () {
             var processedText;
             loca.setVariable('#var#', 66);
             loca.updateVariables('btn_3', 0);
-            impunit.assertEqual('66 test 66', $('#btn_3').val(), "Button 3 was not localized correctly");
+            impunit.assertEqual('66 test 66', document.getElementById('btn_3').value, "Button 3 was not localized correctly");
 
             loca.updateVariables('btn_3', 1);
-            impunit.assertEqual('66 test2 66', $('#btn_3').val(), "Button 3 was not localized correctly");
+            impunit.assertEqual('66 test2 66', document.getElementById('btn_3').value, "Button 3 was not localized correctly");
             locatest.tearDown();
         },
 
@@ -156,10 +159,10 @@ var tests = (function () {
             loca.applyLocalization(0);
             loca.setVariable('#var#', 66);
             loca.updateVariables('txt_test4', 0);
-            impunit.assertEqual('66 test', $('#txt_test4').html());
+            impunit.assertEqual('66 test', document.getElementById('txt_test4').innerHTML);
 
             loca.updateVariables('txt_test4', 1);
-            impunit.assertEqual('66 test2', $('#txt_test4').html());
+            impunit.assertEqual('66 test2', document.getElementById('txt_test4').innerHTML);
             locatest.tearDown();
         },
 
@@ -194,12 +197,12 @@ var tests = (function () {
             loca.setVariable('#var#', 'sweet');
             loca.updateVariables();
 
-            impunit.assertEqual('sweet test', $('#txt_test4').html());
+            impunit.assertEqual('sweet test', document.getElementById('txt_test4').innerHTML);
             loca.applyLocalization(1);
             loca.setVariable('#var#', 'nice')
             loca.updateVariables();
             
-            impunit.assertEqual('nice test2', $('#txt_test4').html());
+            impunit.assertEqual('nice test2', document.getElementById('txt_test4').innerHTML);
             locatest.tearDown();
         }
     };
@@ -216,19 +219,21 @@ var tests = (function () {
                 messages += impunit.messages();
             }
 
+            var testResults = document.getElementById('testresults');
             if (testRun > 0 && testsFailed == 0) {
-                $('#testresults').append('<br>impunit: Automatic localization tests successful.<br>'
+                testResults.innerHTML = '<br>impunit: Automatic localization tests successful.<br>'
                     + '<pre>' + messages + ' </pre>'
-                    + testRun + ' tests have been executed.');
-                $('#testresults').css('color', '#080');
-
+                    + testRun + ' tests have been executed.'
+                ;
+                testResults.style.color = '#080';
             }
             else {
-                $('#testresults').html('TESTS: FAILED'
-                        + '<br>tests run: ' + testRun
-                        + '<br>tests failed: ' + testsFailed
-                        + '<br>messages <pre>: ' + messages
-                        + '</pre>');
+                testResults.innerHTML = 'TESTS: FAILED'
+                    + '<br>tests run: ' + testRun
+                    + '<br>tests failed: ' + testsFailed
+                    + '<br>messages <pre>: ' + messages
+                    + '</pre>';
+                testResults.style.color = '#800';
             }
         }
     }
