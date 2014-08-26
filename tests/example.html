@@ -50,11 +50,11 @@
         }
 
         function startExample() {
+            tests.runTests();
             loca.setDict(loca__dictionary);
             loca.applyLocalization(LOCA_ENG);
             add();
             updateString();
-            tests.runTests();
         }
 
         function setLang(id) {

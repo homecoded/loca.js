@@ -3,12 +3,15 @@ var loca = (function () {
         varMap = {};
 
     /*
-        Sets the currect loca dictionary
+        Sets the current loca dictionary
      */
     function setDict(newDict) {
         dict = newDict;
     }
 
+    /*
+        Set the current loca dictionary for buttons
+     */
     function setButtonDict(newDict) {
         buttonDict = newDict;
     }
