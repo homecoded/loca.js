@@ -106,7 +106,7 @@ var tests = (function () {
 
             loca.setVariable('#var#', "my");
             processedText = loca.getProcessedLocaData("txt_text5", 1);
-            impunit.assertEqual("my test2 my", processedText)
+            impunit.assertEqual("my test2 my", processedText);
             locatest.tearDown();
         },
 
@@ -121,7 +121,7 @@ var tests = (function () {
             loca.setVariable('#var#', "my");
             loca.setVariable('#var2#', "88");
             processedText = loca.getProcessedLocaData("txt_text6", 1);
-            impunit.assertEqual("my test2 88", processedText)
+            impunit.assertEqual("my test2 88", processedText);
             locatest.tearDown();
         },
 
@@ -136,14 +136,13 @@ var tests = (function () {
             loca.setVariable('#var#', "my");
             loca.setVariable('#var2#', "88");
             processedText = loca.getProcessedLocaData("txt_text7", 1);
-            impunit.assertEqual("#var# test2 #var2#", processedText)
+            impunit.assertEqual("#var# test2 #var2#", processedText);
             locatest.tearDown();
         },
 
         _testLocaProcessedButton: function () {
             locatest.setup();
             loca.applyLocalization(0);
-            var processedText;
             loca.setVariable('#var#', 66);
             loca.updateVariables('btn_3', 0);
             impunit.assertEqual('66 test 66', document.getElementById('btn_3').value, "Button 3 was not localized correctly");
@@ -155,7 +154,6 @@ var tests = (function () {
 
         _testLocaProcessedSpan: function () {
             locatest.setup();
-            var processedText;
             loca.applyLocalization(0);
             loca.setVariable('#var#', 66);
             loca.updateVariables('txt_test4', 0);
@@ -178,7 +176,7 @@ var tests = (function () {
         _testLocaSetGetVariable : function () {
             locatest.setup();
             loca.applyLocalization(0);
-            loca.setVariable('#var#', 66)
+            loca.setVariable('#var#', 66);
             impunit.assertEqual(66, loca.getVariable('#var#'));
 
             loca.setVariable('#var2#', 'peace');
@@ -192,14 +190,13 @@ var tests = (function () {
 
         _testLocaUpdateVariables: function () {
             locatest.setup();
-            var processedText;
             loca.applyLocalization(0);
             loca.setVariable('#var#', 'sweet');
             loca.updateVariables();
 
             impunit.assertEqual('sweet test', document.getElementById('txt_test4').innerHTML);
             loca.applyLocalization(1);
-            loca.setVariable('#var#', 'nice')
+            loca.setVariable('#var#', 'nice');
             loca.updateVariables();
             
             impunit.assertEqual('nice test2', document.getElementById('txt_test4').innerHTML);

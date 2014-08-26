@@ -127,7 +127,7 @@ var loca = (function () {
             obj.innerHTML = getProcessedLocaData(objid, langId);
         } else if (obj.tagName === 'INPUT') {
            locaId = buttonDict[obj.id];
-           obj.value = getProcessedLocaData(locaId, langId);;
+           obj.value = getProcessedLocaData(locaId, langId);
         }
     }
 

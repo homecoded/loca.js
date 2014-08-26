@@ -91,7 +91,7 @@ var LOCA_ENG = 0,
     "txt_explanation":
         [
                 "Note: <i>loca.js</i> works in all HTML-elements that can contain span elements. It also works for buttons. Look at the source code of this file to find out how it works.",
-                "Hinweis: <i>loca.js</i> kann in allen HTML-Elementen benutzt werden, die span-Elemente beinhalten dürfen. Es funktioniert auch bei Buttons. Schau Dir den Quelltext dieser Datei an um herauszufinden wie es funktioniert.",
+                "Hinweis: <i>loca.js</i> kann in allen HTML-Elementen benutzt werden, die span-Elemente beinhalten dürfen. Es funktioniert auch bei Buttons. Schau Dir den Quelltext dieser Datei an um herauszufinden wie es funktioniert."
         ]
 
 };
