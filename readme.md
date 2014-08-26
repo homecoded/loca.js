@@ -1,5 +1,5 @@
 loca.js
-=======
+-------
 
 This is a complete client-side localization module for web apps written in JavaScript.
 
@@ -7,7 +7,7 @@ It uses data-attributes to flag elements that should be translated. For texts us
 Variables in the translations are supported.
 
 Code-Example
-============
+------------
 
 HTML:
 
@@ -42,9 +42,13 @@ JavaScript:
     // translate everything on the page to english (language with id 0)
     loca.applyLocalization(LNG_ENGLISH);
 
+Compatibility
+-------------
+
+Firefox, Chrome, IE8+
 
 License
-=======
+-------
 
 The MIT License (MIT)
 
