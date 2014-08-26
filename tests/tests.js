@@ -17,11 +17,11 @@ var tests = (function () {
             ;
             // create the spans
             resultDiv.innerHTML = '<div id="test_remove_me">'
-                    + '<span id="txt_test1"></span>'
-                    + '<p><span id="txt_test2"></span></p>'
-                    + '<p><div><span id="txt_test3"></span></div></p>'
-                    + '<p><div><span id="txt_test4"></span></div></p>'
-                    + '<div><p><div><span id="txt_test1"></span></div></p></div>'
+                    + '<span id="txt_test1" data-loca-id="txt_test1"></span>'
+                    + '<p><span id="txt_test2" data-loca-id="txt_test2"></span></p>'
+                    + '<p><div><span id="txt_test3" data-loca-id="txt_test3"></span></div></p>'
+                    + '<p><div><span id="txt_test4" data-loca-id="txt_test4"></span></div></p>'
+                    + '<div><p><div><span id="txt_test5" data-loca-id="txt_test1"></span></div></p></div>'
                     + '<input type="button" id="btn_1" value="txt_test1" >'
                     + '<input type="button" id="btn_2" value="txt_test2" >'
                     + '<input type="button" id="btn_3" value="txt_text5" >'
@@ -54,6 +54,7 @@ var tests = (function () {
             impunit.assertEqual('test1_1', document.getElementById('txt_test1').innerHTML);
             impunit.assertEqual('test2_1', document.getElementById('txt_test2').innerHTML);
             impunit.assertEqual('test3_1', document.getElementById('txt_test3').innerHTML);
+            impunit.assertEqual('test1_1', document.getElementById('txt_test5').innerHTML);
             locatest.tearDown();
         },
 

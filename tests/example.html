@@ -51,6 +51,7 @@
 
         function startExample() {
             tests.runTests();
+
             loca.setDict(loca__dictionary);
             loca.applyLocalization(LOCA_ENG);
             add();
@@ -71,19 +72,19 @@
 
 <body onload="startExample()">
     <div id="content" class="content">
-        <h1><span id="txt_title"></span></h1>
-        <p><span id="txt_intro"></span></p>
+        <h1><span data-loca-id="txt_title"></span></h1>
+        <p><span data-loca-id="txt_intro"></span></p>
         <div style="padding-left: 30px;">
             <p >
-                <span id="txt_select_language"></span>
+                <span data-loca-id="txt_select_language"></span>
             </p>
             <ul>
-                <li><a href="javascript:setLang(LOCA_GER)"><span id="txt_german"></span></a></li>
-                <li><a href="javascript:setLang(LOCA_ENG)"><span id="txt_english"></span></a></li>
+                <li><a href="javascript:setLang(LOCA_GER)"><span data-loca-id="txt_german"></span></a></li>
+                <li><a href="javascript:setLang(LOCA_ENG)"><span data-loca-id="txt_english"></span></a></li>
             </ul>
             <p>
-                <span id="txt_variable_example"></span><br>
-                <span id="txt_variable_string_example"></span>
+                <span data-loca-id="txt_variable_example"></span><br>
+                <span data-loca-id="txt_variable_string_example"></span>
 
             </p>
             <p>
@@ -91,9 +92,9 @@
                 <input type="button" id="button_str_example" value="txt_button_example_string" onclick="updateString()">
             </p>
         </div>
-        <p><span id="txt_explanation"></span></p>
+        <p><span data-loca-id="txt_explanation"></span></p>
 
-        <h1><span id="txt_tests"></span></h1>
+        <h1><span data-loca-id="txt_tests"></span></h1>
         <div id="testresults">
             Running tests...<br>
         </div>

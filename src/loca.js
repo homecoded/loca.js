@@ -80,7 +80,7 @@ var loca = (function () {
             return;
         }
         for (i = textSpans.length - 1; i >= 0; i--) {
-            locaValue = loca.getProcessedLocaData(textSpans[i].id, langId);
+            locaValue = loca.getProcessedLocaData(textSpans[i].getAttribute('data-loca-id'), langId);
             if (locaValue !== null) {
                 textSpans[i].innerHTML = locaValue;
             }
