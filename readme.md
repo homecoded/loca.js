@@ -1,5 +1,5 @@
 loca.js
--------
+=======
 
 This is a complete client-side localization module for web apps written in JavaScript.
 
