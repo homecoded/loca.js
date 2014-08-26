@@ -1,0 +1,24 @@
+{
+  "name": "loca.js",
+  "version": "0.0.1",
+  "description": "A no-dependency client-side localization module for web apps in JavaScript",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/homecoded/loca.js.git"
+  },
+  "keywords": [
+    "localization",
+    "JavaScript"
+  ],
+  "author": "Manuel Rülke, @homecoded",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/homecoded/loca.js/issues"
+  },
+  "homepage": "https://github.com/homecoded/loca.js",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-uglify": "^0.5.1"
+  }
+}
