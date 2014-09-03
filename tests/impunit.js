@@ -51,7 +51,6 @@ var impunit = (function () {
             testsRun = 0;
             testsFailed = 0;
             asyncTestsFailed = [];
-            asyncTestsRun = 0;
             asyncTestsRun = [];
             messages = '';
 

@@ -1,16 +1,19 @@
 var loca = (function () {
-    var dict, buttonDict, currentLng = -1,
+    var dict, inputDict, currentLng = -1,
         varMap = {};
 
     /*
-        Sets the currect loca dictionary
+        Sets the current loca dictionary
      */
     function setDict(newDict) {
         dict = newDict;
     }
 
+    /*
+        Set the current loca dictionary for buttons
+     */
     function setButtonDict(newDict) {
-        buttonDict = newDict;
+        inputDict = newDict;
     }
 
     /*
@@ -70,38 +73,38 @@ var loca = (function () {
         currentLng = langId;
 
         var textSpans = document.getElementsByTagName("span"),
-            buttons, button,
+            inputs, input,
             locaValue, i, locaId;
 
         if (!textSpans) {
             return;
         }
         for (i = textSpans.length - 1; i >= 0; i--) {
-            locaValue = loca.getProcessedLocaData(textSpans[i].id, langId);
+            locaValue = loca.getProcessedLocaData(textSpans[i].getAttribute('data-loca-id'), langId);
             if (locaValue !== null) {
                 textSpans[i].innerHTML = locaValue;
             }
         }
 
-        // create a list of all button and their respective text-id
-        buttons = document.getElementsByTagName("input");
-        if (!buttonDict && dict) {
-            buttonDict = {};
-            for (i = buttons.length - 1; i >= 0; i--) {
-                button = buttons[i];
-                locaValue = getProcessedLocaData(button.value, langId);
+        // create a list of all inputs and their respective text-id
+        inputs = document.getElementsByTagName("input");
+        if (!inputDict && dict) {
+            inputDict = {};
+            for (i = inputs.length - 1; i >= 0; i--) {
+                input = inputs[i];
+                locaValue = getProcessedLocaData(input.value, langId);
                 if (locaValue !== null) {
-                    buttonDict[button.id] = button.value;
+                    inputDict[input.id] = input.value;
                 }
             }
         }
 
-        // update all buttons
-        for (i = buttons.length - 1; i >= 0; i--) {
-            button = buttons[i];
-            locaId = buttonDict[button.id];
-            if (locaId && button.value) {
-                button.value = getProcessedLocaData(locaId, langId);
+        // update all inputs
+        for (i = inputs.length - 1; i >= 0; i--) {
+            input = inputs[i];
+            locaId = inputDict[input.id];
+            if (locaId && input.value) {
+                input.value = getProcessedLocaData(locaId, langId);
             }
         }
     }
@@ -126,8 +129,8 @@ var loca = (function () {
         if (obj.tagName === 'SPAN') {
             obj.innerHTML = getProcessedLocaData(objid, langId);
         } else if (obj.tagName === 'INPUT') {
-           locaId = buttonDict[obj.id];
-           obj.value = getProcessedLocaData(locaId, langId);;
+           locaId = inputDict[obj.id];
+           obj.value = getProcessedLocaData(locaId, langId);
         }
     }
 
