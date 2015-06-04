@@ -2,7 +2,7 @@
 var loca = window.loca || {};
 var impunit = window.impunit || {};
 
-var tests = (function () {
+impunit.__tests = (function () {
     // test loca
     var locatest = {
         setup: function () {
@@ -237,5 +237,5 @@ var tests = (function () {
                 testResults.style.color = '#800';
             }
         }
-    }
+    };
 }());
