@@ -1,3 +1,6 @@
+// make the other modules known to code sniffers
+var loca = window.loca || {};
+var impunit = window.impunit || {};
 
 var tests = (function () {
     // test loca
@@ -5,28 +8,28 @@ var tests = (function () {
         setup: function () {
             // craete a dict
             var dict = {
-                    txt_test1 : ['test1_1', 'test1_2'],
-                    txt_test2 : ['test2_1', 'test2_2'],
-                    txt_test3 : ['test3_1', 'test3_2'],
-                    txt_test4 : ['#var# test', '#var# test2', { containsVariables: true}],
-                    txt_text5: ['#var# test #var#', '#var# test2 #var#', { containsVariables: true}],
-                    txt_text6: ['#var# test #var2#', '#var# test2 #var2#', { containsVariables: true}],
+                    txt_test1: ['test1_1', 'test1_2'],
+                    txt_test2: ['test2_1', 'test2_2'],
+                    txt_test3: ['test3_1', 'test3_2'],
+                    txt_test4: ['#var# test', '#var# test2', {containsVariables: true}],
+                    txt_text5: ['#var# test #var#', '#var# test2 #var#', {containsVariables: true}],
+                    txt_text6: ['#var# test #var2#', '#var# test2 #var2#', {containsVariables: true}],
                     txt_text7: ['#var# test #var2#', '#var# test2 #var2#']
                 },
                 resultDiv = document.getElementById('testresults')
-            ;
+                ;
             // create the spans
-            resultDiv.innerHTML = '<div id="test_remove_me">'
-                    + '<span id="txt_test1" data-loca-id="txt_test1"></span>'
-                    + '<p><span id="txt_test2" data-loca-id="txt_test2"></span></p>'
-                    + '<p><div><span id="txt_test3" data-loca-id="txt_test3"></span></div></p>'
-                    + '<p><div><span id="txt_test4" data-loca-id="txt_test4"></span></div></p>'
-                    + '<div><p><div><span id="txt_test5" data-loca-id="txt_test1"></span></div></p></div>'
-                    + '<input type="button" id="btn_1" value="txt_test1" >'
-                    + '<input type="button" id="btn_2" value="txt_test2" >'
-                    + '<input type="button" id="btn_3" value="txt_text5" >'
-                    + '</div>'
-                    ;
+            resultDiv.innerHTML = '<div id="test_remove_me">' +
+                '<span id="txt_test1" data-loca-id="txt_test1"></span>' +
+                '<p><span id="txt_test2" data-loca-id="txt_test2"></span></p>' +
+                '<p><div><span id="txt_test3" data-loca-id="txt_test3"></span></div></p>' +
+                '<p><div><span id="txt_test4" data-loca-id="txt_test4"></span></div></p>' +
+                '<div><p><div><span id="txt_test5" data-loca-id="txt_test1"></span></div></p></div>' +
+                '<input type="button" id="btn_1" value="txt_test1" >' +
+                '<input type="button" id="btn_2" value="txt_test2" >' +
+                '<input type="button" id="btn_3" value="txt_text5" >' +
+                '</div>'
+            ;
 
             // init the loca
             loca.setDict(dict);
@@ -40,7 +43,7 @@ var tests = (function () {
             element.parentNode.removeChild(element);
         },
 
-        _testLoca : function () {
+        _testLoca: function () {
             locatest.setup();
             impunit.assertEqual('test1_1', loca.getLocaData('txt_test1'));
             impunit.assertEqual('test1_1', loca.getLocaData('txt_test1', 0));
@@ -174,7 +177,7 @@ var tests = (function () {
             locatest.tearDown();
         },
 
-        _testLocaSetGetVariable : function () {
+        _testLocaSetGetVariable: function () {
             locatest.setup();
             loca.applyLocalization(0);
             loca.setVariable('#var#', 66);
@@ -199,7 +202,7 @@ var tests = (function () {
             loca.applyLocalization(1);
             loca.setVariable('#var#', 'nice');
             loca.updateVariables();
-            
+
             impunit.assertEqual('nice test2', document.getElementById('txt_test4').innerHTML);
             locatest.tearDown();
         }
@@ -218,19 +221,19 @@ var tests = (function () {
             }
 
             var testResults = document.getElementById('testresults');
-            if (testRun > 0 && testsFailed == 0) {
-                testResults.innerHTML = '<br>impunit: Automatic localization tests successful.<br>'
-                    + '<pre>' + messages + ' </pre>'
-                    + testRun + ' tests have been executed.'
+            if (testRun > 0 && testsFailed === 0) {
+                testResults.innerHTML = '<br>impunit: Automatic localization tests successful.<br>' +
+                    '<pre>' + messages + ' </pre>' +
+                    testRun + ' tests have been executed.'
                 ;
                 testResults.style.color = '#080';
             }
             else {
-                testResults.innerHTML = 'TESTS: FAILED'
-                    + '<br>tests run: ' + testRun
-                    + '<br>tests failed: ' + testsFailed
-                    + '<br>messages <pre>: ' + messages
-                    + '</pre>';
+                testResults.innerHTML = 'TESTS: FAILED' +
+                    '<br>tests run: ' + testRun +
+                    '<br>tests failed: ' + testsFailed +
+                    '<br>messages <pre>: ' + messages +
+                    '</pre>';
                 testResults.style.color = '#800';
             }
         }
