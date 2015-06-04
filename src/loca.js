@@ -1,16 +1,39 @@
+/*
+ The MIT License (MIT)
+
+ Copyright (c) 2014 Manuel Ruelke, homecoded
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ */
 var loca = (function () {
     var dict, inputDict, currentLng = -1,
         varMap = {};
 
     /*
-        Sets the current loca dictionary
+     Sets the current loca dictionary
      */
     function setDict(newDict) {
         dict = newDict;
     }
 
     /*
-        Set the current loca dictionary for buttons
+     Set the current loca dictionary for buttons
      */
     function setButtonDict(newDict) {
         inputDict = newDict;
@@ -40,7 +63,7 @@ var loca = (function () {
 
     function getProcessedLocaData(id, langId) {
         var locaData = getLocaData(id, langId),
-                varKey, varData, regex;
+            varKey, varData, regex;
 
         if (!locaData) {
             return null;
@@ -54,8 +77,8 @@ var loca = (function () {
         }
 
         // replace all the variables
-        for(var prop in varMap) {
-            if(varMap.hasOwnProperty(prop)) {
+        for (var prop in varMap) {
+            if (varMap.hasOwnProperty(prop)) {
                 varKey = prop;
                 varData = varMap[varKey];
                 regex = new RegExp(varKey, 'g');
@@ -68,8 +91,7 @@ var loca = (function () {
     /*
      Applies all loca keys to the texts
      */
-    function applyLocalization(langId)
-    {
+    function applyLocalization(langId) {
         currentLng = langId;
 
         var textSpans = document.getElementsByTagName("span"),
@@ -110,7 +132,7 @@ var loca = (function () {
     }
 
     /*
-        Updates the text in specified object with variables
+     Updates the text in specified object with variables
      */
     function updateVariables(objid, langId) {
 
@@ -129,27 +151,31 @@ var loca = (function () {
         if (obj.tagName === 'SPAN') {
             obj.innerHTML = getProcessedLocaData(objid, langId);
         } else if (obj.tagName === 'INPUT') {
-           locaId = inputDict[obj.id];
-           obj.value = getProcessedLocaData(locaId, langId);
+            locaId = inputDict[obj.id];
+            obj.value = getProcessedLocaData(locaId, langId);
         }
     }
 
     /*
-        Sets a loca-variable, that can later be replaces in a loca-entry
-    */
+     Sets a loca-variable, that can later be replaces in a loca-entry
+     */
     function setVariable(key, value) {
         varMap[key] = value;
     }
 
     return {
-        setDict: setDict,
-        setButtonDict:setButtonDict,
-        applyLocalization: applyLocalization,
-        setVariable: setVariable,
-        getLocaData: getLocaData,
+        setDict:              setDict,
+        setButtonDict:        setButtonDict,
+        applyLocalization:    applyLocalization,
+        setVariable:          setVariable,
+        getLocaData:          getLocaData,
         getProcessedLocaData: getProcessedLocaData,
-        updateVariables: updateVariables,
-        getLanguage: function () { return currentLng; },
-        getVariable: function (key) { return varMap[key]; }
+        updateVariables:      updateVariables,
+        getLanguage:          function () {
+            return currentLng;
+        },
+        getVariable:          function (key) {
+            return varMap[key];
+        }
     };
 })();

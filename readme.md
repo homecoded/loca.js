@@ -45,14 +45,14 @@ JavaScript:
 Compatibility
 -------------
 
-Firefox, Chrome, IE8+
+Safari, Android Native Browser, Firefox (Desktop & Mobile), Chrome (Desktop & Mobile), IE8+, Opera
 
 License
 -------
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Manuel Rülke, homecoded
+Copyright (c) 2014 Manuel Ruelke, homecoded
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
