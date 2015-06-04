@@ -1,3 +1,4 @@
+
 loca.js
 =======
 
@@ -5,6 +6,8 @@ This is a complete client-side localization module for web apps written in JavaS
 
 It uses data-attributes to flag elements that should be translated. For texts use spans. Buttons are also supported.
 Variables in the translations are supported.
+
+[![Code Climate](https://codeclimate.com/github/homecoded/loca.js/badges/gpa.svg)](https://codeclimate.com/github/homecoded/loca.js)
 
 Code-Example
 ------------
