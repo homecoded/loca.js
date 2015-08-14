@@ -1,0 +1,23 @@
+{
+  "name": "locajs",
+  "version": "0.0.1",
+  "homepage": "https://github.com/homecoded/loca.js",
+  "authors": [
+    "Manuel Ruelke",
+    "homecoded <contact@homecoded.com>"
+  ],
+  "description": "A tiny dependency-less localization framework for web-apps in JavaScript",
+  "main": "build/loca.min.js",
+  "keywords": [
+    "localization",
+    "translation"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "tests",
+    "src"
+  ]
+}
