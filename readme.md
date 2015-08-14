@@ -18,7 +18,7 @@ HTML:
     <span data-loca-id="txt_loca_1"></span>
 
     <!-- The button value will be automatically translated, requires an id -->
-    <input type="button" id="button_example" value="txt_button">
+    <input type="button" id="button_example" data-loca-id="txt_button" value="">
 
 JavaScript:
 
@@ -55,7 +55,7 @@ License
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Manuel Ruelke, homecoded
+Copyright (c) 2015 Manuel Ruelke, homecoded
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
