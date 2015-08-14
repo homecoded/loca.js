@@ -25,9 +25,11 @@ impunit.__tests = (function () {
                 '<p><div><span id="txt_test3" data-loca-id="txt_test3"></span></div></p>' +
                 '<p><div><span id="txt_test4" data-loca-id="txt_test4"></span></div></p>' +
                 '<div><p><div><span id="txt_test5" data-loca-id="txt_test1"></span></div></p></div>' +
-                '<input type="button" id="btn_1" value="txt_test1" >' +
-                '<input type="button" id="btn_2" value="txt_test2" >' +
-                '<input type="button" id="btn_3" value="txt_text5" >' +
+                '<input type="button" id="btn_1" data-loca-id="txt_test1" value="stuff">' +
+                '<input type="button" id="btn_2" data-loca-id="txt_test2" value="stuff">' +
+                '<input type="button" id="btn_3" data-loca-id="txt_text5" value="stuff">' +
+                '<button id="btn_4" data-loca-id="txt_test1">stuff</button>' +
+                '<div id="div_1" data-loca-id="txt_test2">no trans</div>' +
                 '</div>'
             ;
 
@@ -37,7 +39,6 @@ impunit.__tests = (function () {
 
         tearDown: function () {
             loca.setDict(null);
-            loca.setButtonDict(null);
             // remove the test elements
             var element = document.getElementById('test_remove_me');
             element.parentNode.removeChild(element);
@@ -74,8 +75,24 @@ impunit.__tests = (function () {
         _testLocaButtons: function () {
             locatest.setup();
             loca.applyLocalization(0);
-            impunit.assertEqual('test1_1', document.getElementById('btn_1').value, "Button 1 was not localized correctly");
-            impunit.assertEqual('test2_1', document.getElementById('btn_2').value, "Button 2 was not localized correctly");
+            impunit.assertEqual('test1_1', document.getElementById('btn_1').value, "Input/Button 1 was not localized correctly");
+            impunit.assertEqual('test2_1', document.getElementById('btn_2').value, "Input/Button 2 was not localized correctly");
+            locatest.tearDown();
+        },
+
+        _testLocaDiv: function () {
+            locatest.setup();
+            loca.applyLocalization(1);
+            impunit.assertEqual('test2_2', document.getElementById('div_1').innerHTML, "Div 1 was not localized correctly");
+            locatest.tearDown();
+        },
+
+        _testLocaInputChange: function () {
+            locatest.setup();
+            loca.applyLocalization(0);
+            loca.applyLocalization(1);
+            impunit.assertEqual('test1_2', document.getElementById('btn_1').value, "Input/Button 1 was not localized correctly");
+            impunit.assertEqual('test2_2', document.getElementById('btn_2').value, "Input/Button 2 was not localized correctly");
             locatest.tearDown();
         },
 
@@ -83,8 +100,7 @@ impunit.__tests = (function () {
             locatest.setup();
             loca.applyLocalization(0);
             loca.applyLocalization(1);
-            impunit.assertEqual('test1_2', document.getElementById('btn_1').value, "Button 1 was not localized correctly");
-            impunit.assertEqual('test2_2', document.getElementById('btn_2').value, "Button 2 was not localized correctly");
+            impunit.assertEqual('test1_2', document.getElementById('btn_4').innerHTML, "Button 1 was not localized correctly");
             locatest.tearDown();
         },
 
